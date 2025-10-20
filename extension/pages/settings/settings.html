@@ -197,6 +197,66 @@
 							<label for="themes-container__alternative">Alternative (black and green)</label>
 						</div>
 
+						<div class="header">Custom Theming</div>
+						<div class="option">
+							<input id="customTheming-enabled" type="checkbox" />
+							<label for="customTheming-enabled">Enable Custom Theming</label>
+							<label for="customTheming-enabled" class="tabbed note">
+								Apply custom backgrounds, colors, fonts, and styles to Torn.
+							</label>
+						</div>
+
+						<div class="option tabbed">
+							<label for="customTheming-backgroundImage">Background Image URL:</label>
+							<input id="customTheming-backgroundImage" class="long-input" type="text" placeholder="https://example.com/image.jpg or leave empty" />
+							<button id="customTheming-uploadBackground" class="fancy-button">Upload Image</button>
+							<input id="customTheming-backgroundImageFile" type="file" accept="image/*" style="display: none;" />
+						</div>
+
+						<div class="option tabbed">
+							<label for="customTheming-backgroundColor">Background Color:</label>
+							<input id="customTheming-backgroundColor" type="color" value="#000000" />
+							<button id="customTheming-clearBackgroundColor" class="fancy-button">Clear</button>
+						</div>
+
+						<div class="option tabbed">
+							<label for="customTheming-backgroundOpacity">Background Opacity:</label>
+							<input id="customTheming-backgroundOpacity" type="range" min="0" max="1" step="0.05" value="0.1" />
+							<span id="customTheming-backgroundOpacity-value">0.1</span>
+						</div>
+
+						<div class="option tabbed">
+							<label for="customTheming-backgroundSize">Background Size:</label>
+							<select id="customTheming-backgroundSize">
+								<option value="cover">Cover (fill entire screen)</option>
+								<option value="contain">Contain (fit within screen)</option>
+								<option value="auto">Auto (original size)</option>
+							</select>
+						</div>
+
+						<div class="option tabbed">
+							<input id="customTheming-applyToElements" type="checkbox" />
+							<label for="customTheming-applyToElements">Apply opacity to page elements</label>
+							<label for="customTheming-applyToElements" class="tabbed note">
+								Makes page elements semi-transparent to see the background better.
+							</label>
+						</div>
+
+						<div class="option tabbed">
+							<label for="customTheming-customFont">Custom Font URL:</label>
+							<input id="customTheming-customFont" class="long-input" type="text" placeholder="https://example.com/font.woff2 or leave empty" />
+							<button id="customTheming-uploadFont" class="fancy-button">Upload Font</button>
+							<input id="customTheming-customFontFile" type="file" accept=".woff,.woff2,.ttf,.otf" style="display: none;" />
+						</div>
+
+						<div class="option tabbed">
+							<label for="customTheming-customFontFamily">Font Family Name:</label>
+							<input id="customTheming-customFontFamily" class="short-input" type="text" placeholder="MyCustomFont" />
+							<label for="customTheming-customFontFamily" class="tabbed note">
+								Name to use for the uploaded font (e.g., "Arial", "Roboto").
+							</label>
+						</div>
+
 						<div class="header">Date</div>
 						<div class="option">
 							<input id="formatting-date__eu" type="radio" name="formatDate" value="eu" />
