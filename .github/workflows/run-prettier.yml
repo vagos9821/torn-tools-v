@@ -29,3 +29,4 @@ jobs:
               with:
                   message: Apply prettier changes.
                   default_author: github_actions
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
