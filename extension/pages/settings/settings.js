@@ -361,6 +361,14 @@ async function setupPreferences(requireCleanup) {
 		_preferences.find("#customTheming-backgroundOpacity-value").textContent = event.target.value;
 	});
 
+	_preferences.find("#customTheming-lineHeight").addEventListener("input", (event) => {
+		_preferences.find("#customTheming-lineHeight-value").textContent = event.target.value;
+	});
+
+	_preferences.find("#customTheming-letterSpacing").addEventListener("input", (event) => {
+		_preferences.find("#customTheming-letterSpacing-value").textContent = event.target.value + "px";
+	});
+
 	_preferences.find("#customTheming-uploadBackground").addEventListener("click", () => {
 		_preferences.find("#customTheming-backgroundImageFile").click();
 	});
@@ -642,6 +650,10 @@ async function setupPreferences(requireCleanup) {
 		_preferences.find("#customTheming-applyToElements").checked = settings.customTheming.applyToElements ?? true;
 		_preferences.find("#customTheming-customFont").value = settings.customTheming.customFont || "";
 		_preferences.find("#customTheming-customFontFamily").value = settings.customTheming.customFontFamily || "";
+		_preferences.find("#customTheming-lineHeight").value = settings.customTheming.lineHeight ?? 1.5;
+		_preferences.find("#customTheming-lineHeight-value").textContent = settings.customTheming.lineHeight ?? 1.5;
+		_preferences.find("#customTheming-letterSpacing").value = settings.customTheming.letterSpacing ?? 0;
+		_preferences.find("#customTheming-letterSpacing-value").textContent = (settings.customTheming.letterSpacing ?? 0) + "px";
 
 		for (const service of ["tornstats", "yata", "prometheus", "lzpt", "tornw3b", "ffScouter"]) {
 			_preferences.find(`#external-${service}`).checked = settings.external[service];
@@ -1051,6 +1063,8 @@ async function setupPreferences(requireCleanup) {
 		settings.customTheming.applyToElements = _preferences.find("#customTheming-applyToElements").checked;
 		settings.customTheming.customFont = _preferences.find("#customTheming-customFont").value;
 		settings.customTheming.customFontFamily = _preferences.find("#customTheming-customFontFamily").value;
+		settings.customTheming.lineHeight = parseFloat(_preferences.find("#customTheming-lineHeight").value);
+		settings.customTheming.letterSpacing = parseFloat(_preferences.find("#customTheming-letterSpacing").value);
 
 		settings.csvDelimiter = _preferences.find("#csvDelimiter").value;
 

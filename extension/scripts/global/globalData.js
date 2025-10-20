@@ -395,6 +395,8 @@ const DEFAULT_STORAGE = {
 			applyToElements: new DefaultSetting({ type: "boolean", defaultValue: true }),
 			customFont: new DefaultSetting({ type: "string", defaultValue: "" }),
 			customFontFamily: new DefaultSetting({ type: "string", defaultValue: "" }),
+			lineHeight: new DefaultSetting({ type: "number", defaultValue: 1.5 }),
+			letterSpacing: new DefaultSetting({ type: "number", defaultValue: 0 }),
 		},
 		hideIcons: new DefaultSetting({ type: "array", defaultValue: [] }),
 		hideCasinoGames: new DefaultSetting({ type: "array", defaultValue: [] }),
