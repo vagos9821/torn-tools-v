@@ -356,6 +356,47 @@ async function setupPreferences(requireCleanup) {
 		reader.readAsDataURL(event.target.files[0]);
 	});
 
+	// Custom theming event handlers
+	_preferences.find("#customTheming-backgroundOpacity").addEventListener("input", (event) => {
+		_preferences.find("#customTheming-backgroundOpacity-value").textContent = event.target.value;
+	});
+
+	_preferences.find("#customTheming-uploadBackground").addEventListener("click", () => {
+		_preferences.find("#customTheming-backgroundImageFile").click();
+	});
+
+	_preferences.find("#customTheming-backgroundImageFile").addEventListener("change", (event) => {
+		if (!event.target.files.length) return;
+
+		const reader = new FileReader();
+		reader.addEventListener("load", (event) => {
+			const result = event.target.result;
+			_preferences.find("#customTheming-backgroundImage").value = result;
+			sendMessage("Background image uploaded successfully.", true);
+		});
+		reader.readAsDataURL(event.target.files[0]);
+	});
+
+	_preferences.find("#customTheming-clearBackgroundColor").addEventListener("click", () => {
+		_preferences.find("#customTheming-backgroundColor").value = "#000000";
+	});
+
+	_preferences.find("#customTheming-uploadFont").addEventListener("click", () => {
+		_preferences.find("#customTheming-customFontFile").click();
+	});
+
+	_preferences.find("#customTheming-customFontFile").addEventListener("change", (event) => {
+		if (!event.target.files.length) return;
+
+		const reader = new FileReader();
+		reader.addEventListener("load", (event) => {
+			const result = event.target.result;
+			_preferences.find("#customTheming-customFont").value = result;
+			sendMessage("Custom font uploaded successfully.", true);
+		});
+		reader.readAsDataURL(event.target.files[0]);
+	});
+
 	new Sortable(_preferences.find("#customLinks"), {
 		draggable: "li:not(.input)",
 		handle: ".move-icon-wrap",
@@ -590,6 +631,17 @@ async function setupPreferences(requireCleanup) {
 		_preferences.find(`input[name="formatTime"][value="${settings.formatting.time}"]`).checked = true;
 		_preferences.find(`input[name="themePage"][value="${settings.themes.pages}"]`).checked = true;
 		_preferences.find(`input[name="themeContainers"][value="${settings.themes.containers}"]`).checked = true;
+
+		// Load custom theming settings
+		_preferences.find("#customTheming-enabled").checked = settings.customTheming.enabled;
+		_preferences.find("#customTheming-backgroundImage").value = settings.customTheming.backgroundImage || "";
+		_preferences.find("#customTheming-backgroundColor").value = settings.customTheming.backgroundColor || "#000000";
+		_preferences.find("#customTheming-backgroundOpacity").value = settings.customTheming.backgroundOpacity ?? 0.1;
+		_preferences.find("#customTheming-backgroundOpacity-value").textContent = settings.customTheming.backgroundOpacity ?? 0.1;
+		_preferences.find("#customTheming-backgroundSize").value = settings.customTheming.backgroundSize || "cover";
+		_preferences.find("#customTheming-applyToElements").checked = settings.customTheming.applyToElements ?? true;
+		_preferences.find("#customTheming-customFont").value = settings.customTheming.customFont || "";
+		_preferences.find("#customTheming-customFontFamily").value = settings.customTheming.customFontFamily || "";
 
 		for (const service of ["tornstats", "yata", "prometheus", "lzpt", "tornw3b", "ffScouter"]) {
 			_preferences.find(`#external-${service}`).checked = settings.external[service];
@@ -989,6 +1041,16 @@ async function setupPreferences(requireCleanup) {
 		settings.formatting.time = _preferences.find("input[name='formatTime']:checked").value;
 		settings.themes.pages = _preferences.find("input[name='themePage']:checked").value;
 		settings.themes.containers = _preferences.find("input[name='themeContainers']:checked").value;
+
+		// Save custom theming settings
+		settings.customTheming.enabled = _preferences.find("#customTheming-enabled").checked;
+		settings.customTheming.backgroundImage = _preferences.find("#customTheming-backgroundImage").value;
+		settings.customTheming.backgroundColor = _preferences.find("#customTheming-backgroundColor").value;
+		settings.customTheming.backgroundOpacity = parseFloat(_preferences.find("#customTheming-backgroundOpacity").value);
+		settings.customTheming.backgroundSize = _preferences.find("#customTheming-backgroundSize").value;
+		settings.customTheming.applyToElements = _preferences.find("#customTheming-applyToElements").checked;
+		settings.customTheming.customFont = _preferences.find("#customTheming-customFont").value;
+		settings.customTheming.customFontFamily = _preferences.find("#customTheming-customFontFamily").value;
 
 		settings.csvDelimiter = _preferences.find("#csvDelimiter").value;
 
