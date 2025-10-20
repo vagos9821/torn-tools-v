@@ -1,6 +1,8 @@
 "use strict";
 
 (async () => {
+	if (is2FACheckPage()) return;
+
 	const feature = featureManager.registerFeature(
 		"User Alias - Chat",
 		"chat",
@@ -16,7 +18,8 @@
 	);
 
 	async function addListeners() {
-		await requireElement("#chatRoot [class*='chat-note-button__']");
+		// Use the standard requireChatsLoaded function instead of waiting for specific chat elements
+		await requireChatsLoaded();
 
 		addAliasTitle();
 		addAliasMessage();
