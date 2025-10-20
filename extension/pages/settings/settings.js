@@ -259,10 +259,11 @@ async function setupPreferences(requireCleanup) {
 	_preferences.find("#addChatHighlight").addEventListener("click", () => {
 		const inputRow = document.find("#chatHighlight .input");
 
-		addChatHighlightRow(inputRow.find(".name").value, inputRow.find(".color").value);
+		addChatHighlightRow(inputRow.find(".name").value, inputRow.find(".color").value, inputRow.find(".type").value);
 
 		inputRow.find(".name").value = "";
 		inputRow.find(".color").value = "#7ca900";
+		inputRow.find(".type").value = "sender";
 	});
 	_preferences.find("#addChatTitleHighlight").addEventListener("click", () => {
 		const inputRow = document.find("#chatTitleHighlight .input");
@@ -651,7 +652,7 @@ async function setupPreferences(requireCleanup) {
 		if (api.ffScouter.key) _preferences.find("#external-ffScouter-key").value = api.ffScouter.key;
 
 		for (const highlight of settings.pages.chat.highlights) {
-			addChatHighlightRow(highlight.name, highlight.color);
+			addChatHighlightRow(highlight.name, highlight.color, highlight.type || "sender");
 		}
 		for (const highlight of settings.pages.chat.titleHighlights) {
 			addChatTitleHighlightRow(highlight.title, highlight.color);
@@ -758,17 +759,28 @@ async function setupPreferences(requireCleanup) {
 		}
 	}
 
-	function addChatHighlightRow(name, color) {
+	function addChatHighlightRow(name, color, type = "sender") {
 		const deleteIcon = document.newElement({
 			type: "button",
 			class: "remove-icon-wrap",
 			children: [document.newElement({ type: "i", class: "remove-icon fa-solid fa-trash-can" })],
 		});
+		const typeSelect = document.newElement({
+			type: "select",
+			class: "type",
+			children: [
+				document.newElement({ type: "option", value: "sender", text: "Sender only" }),
+				document.newElement({ type: "option", value: "word", text: "Word-based" }),
+			],
+		});
+		typeSelect.value = type;
+
 		const newRow = document.newElement({
 			type: "li",
 			children: [
 				document.newElement({ type: "input", class: "name", value: name, attributes: { type: "text", placeholder: "Name.." } }),
 				document.newElement({ type: "input", class: "color", value: color, attributes: { type: "color" } }),
+				typeSelect,
 				deleteIcon,
 			],
 		});
@@ -1032,6 +1044,7 @@ async function setupPreferences(requireCleanup) {
 			return {
 				name: highlight.find(".name").value,
 				color: highlight.find(".color").value,
+				type: highlight.find(".type").value,
 			};
 		});
 		settings.pages.chat.titleHighlights = [..._preferences.findAll("#chatTitleHighlight > li:not(.input)")].map((highlight) => {
@@ -1190,7 +1203,7 @@ async function setupPreferences(requireCleanup) {
 						//div[contains(translate(@class, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'sections')]
 							//section
 								//label[not(contains(@class, 'note'))][contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${searchFor}')]
-				| 
+				|
 				//main[@id='preferences']
 					//section
 						//div[contains(translate(@class, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'sections')]
@@ -1606,7 +1619,7 @@ async function setupExport() {
 			message: `
 				<h3>Paste your database below. Be careful to use the exact copy provided.</h3>
 				<textarea name="importtext"></textarea>
-				
+
 				<h3>Are you sure you want to overwrite following items?</h3>
 				<ul>
 					<li>version notice</li>

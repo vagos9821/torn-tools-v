@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>TornTools - Settings</title>
+		<title>TornTools V - Settings</title>
 		<link rel="icon" type="image/png" href="../../resources/images/icon_128.png" />
 
 		<link rel="stylesheet" href="../../scripts/global/globalVariables.css" />
@@ -450,12 +450,21 @@
 						</div>
 
 						<div class="header">Highlights</div>
+						<div class="note">
+							Sender-only: Highlights messages from specific senders and adds outline when they send messages.<br>
+							Word-based: Also highlights messages containing the specified words (may cause false positives with common names).
+						</div>
 						<ul id="chatHighlight" class="list-table">
 							<li class="input">
 								<!--suppress HtmlFormInputWithoutLabel -->
 								<input type="text" class="name" placeholder="Name.." />
 								<!--suppress HtmlFormInputWithoutLabel -->
 								<input type="color" class="color" value="#7ca900" />
+								<!--suppress HtmlFormInputWithoutLabel -->
+								<select class="type">
+									<option value="sender">Sender only</option>
+									<option value="word">Word-based</option>
+								</select>
 								<button class="add-icon-wrap" id="addChatHighlight">
 									<i class="add-icon fa-solid fa-plus"></i>
 								</button>

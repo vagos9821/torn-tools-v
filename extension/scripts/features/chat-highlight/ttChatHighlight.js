@@ -61,7 +61,10 @@
 
 	function readSettings() {
 		highlights = settings.pages.chat.highlights.map((highlight) => {
-			let { name, color } = highlight;
+			let { name, color, type } = highlight;
+
+			// Default to "sender" type for backward compatibility
+			if (!type) type = "sender";
 
 			for (const placeholder of HIGHLIGHT_PLACEHOLDERS) {
 				if (name !== placeholder.name) continue;
@@ -70,7 +73,7 @@
 				break;
 			}
 
-			return { name: name.toLowerCase(), color: color.length === 7 ? `${color}6e` : color, senderColor: color };
+			return { name: name.toLowerCase(), color: color.length === 7 ? `${color}6e` : color, senderColor: color, type };
 		});
 
 		requireChatsLoaded().then(() => {
@@ -98,7 +101,11 @@
 			message.style.outline = `1px solid ${senderHighlights[0].senderColor}`;
 		}
 
-		for (const { name, color } of highlights) {
+		// Only check for word-based highlighting if the highlight type is "word"
+		for (const { name, color, type } of highlights) {
+			// Skip word highlighting unless explicitly set to "word" type
+			if (type !== "word") continue;
+
 			// When word includes a name in highlights.
 			if (!words.includes(name)) continue;
 
@@ -139,7 +146,11 @@
 			message.style.outline = `1px solid ${senderHighlights[0].senderColor}`;
 		}
 
-		for (const { name, color } of highlights) {
+		// Only check for word-based highlighting if the highlight type is "word"
+		for (const { name, color, type } of highlights) {
+			// Skip word highlighting unless explicitly set to "word" type
+			if (type !== "word") continue;
+
 			// When word includes a name in highlights.
 			if (!words.includes(name)) continue;
 

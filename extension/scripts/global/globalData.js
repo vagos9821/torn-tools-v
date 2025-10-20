@@ -427,7 +427,7 @@ const DEFAULT_STORAGE = {
 				searchChat: new DefaultSetting({ type: "boolean", defaultValue: true }),
 				blockZalgo: new DefaultSetting({ type: "boolean", defaultValue: true }),
 				completeUsernames: new DefaultSetting({ type: "boolean", defaultValue: true }),
-				highlights: new DefaultSetting({ type: "array", defaultValue: [{ name: "$player", color: "#7ca900" }] }),
+				highlights: new DefaultSetting({ type: "array", defaultValue: [{ name: "$player", color: "#7ca900", type: "sender" }] }),
 				titleHighlights: new DefaultSetting({ type: "array", defaultValue: [] }),
 				tradeTimer: new DefaultSetting({ type: "boolean", defaultValue: true }),
 				hideChatButton: new DefaultSetting({ type: "boolean", defaultValue: true }),
