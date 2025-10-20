@@ -1,0 +1,11 @@
+/* Custom Theming Feature Styles */
+
+/* This file is intentionally minimal as most styles are applied dynamically */
+/* The dynamic styles are injected via JavaScript to allow for user customization */
+
+/* Ensure TornTools containers are not affected by opacity changes */
+#tt-page-status,
+.tt-container,
+[class*="torntools"] {
+	background: inherit !important;
+}
