@@ -5,6 +5,10 @@ on:
         paths:
           - 'extension/**'
     workflow_dispatch:
+
+permissions:
+    contents: write
+
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -17,6 +21,9 @@ jobs:
 
             # Downloads Repos for Usage
             - uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  fetch-depth: 0
 
             # Runs prettier
             - name: Format with prettier
