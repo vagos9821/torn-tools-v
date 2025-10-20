@@ -201,16 +201,19 @@
 						<div class="option">
 							<input id="customTheming-enabled" type="checkbox" />
 							<label for="customTheming-enabled">Enable Custom Theming</label>
-							<label for="customTheming-enabled" class="tabbed note">
-								Apply custom backgrounds, colors, fonts, and styles to Torn.
-							</label>
+							<label for="customTheming-enabled" class="tabbed note"> Apply custom backgrounds, colors, fonts, and styles to Torn. </label>
 						</div>
 
 						<div class="option tabbed">
 							<label for="customTheming-backgroundImage">Background Image URL:</label>
-							<input id="customTheming-backgroundImage" class="long-input" type="text" placeholder="https://example.com/image.jpg or leave empty" />
+							<input
+								id="customTheming-backgroundImage"
+								class="long-input"
+								type="text"
+								placeholder="https://example.com/image.jpg or leave empty"
+							/>
 							<button id="customTheming-uploadBackground" class="fancy-button">Upload Image</button>
-							<input id="customTheming-backgroundImageFile" type="file" accept="image/*" style="display: none;" />
+							<input id="customTheming-backgroundImageFile" type="file" accept="image/*" style="display: none" />
 						</div>
 
 						<div class="option tabbed">
@@ -246,7 +249,7 @@
 							<label for="customTheming-customFont">Custom Font URL:</label>
 							<input id="customTheming-customFont" class="long-input" type="text" placeholder="https://example.com/font.woff2 or leave empty" />
 							<button id="customTheming-uploadFont" class="fancy-button">Upload Font</button>
-							<input id="customTheming-customFontFile" type="file" accept=".woff,.woff2,.ttf,.otf" style="display: none;" />
+							<input id="customTheming-customFontFile" type="file" accept=".woff,.woff2,.ttf,.otf" style="display: none" />
 						</div>
 
 						<div class="option tabbed">
@@ -511,7 +514,7 @@
 
 						<div class="header">Highlights</div>
 						<div class="note">
-							Sender-only: Highlights messages from specific senders and adds outline when they send messages.<br>
+							Sender-only: Highlights messages from specific senders and adds outline when they send messages.<br />
 							Word-based: Also highlights messages containing the specified words (may cause false positives with common names).
 						</div>
 						<ul id="chatHighlight" class="list-table">
