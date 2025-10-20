@@ -85,7 +85,8 @@
 				"scripts/features/align-left/ttAlignLeft.css",
 				"scripts/features/font-size/ttFontSize.css",
 				"scripts/features/block-zalgo/ttBlockZalgo.css",
-				"scripts/features/hide-chat/ttHideChat.css"
+				"scripts/features/hide-chat/ttHideChat.css",
+				"scripts/features/custom-theming/ttCustomTheming.css"
 			],
 			"js": [
 				"vendor/fontawesome/fontawesome.js",
@@ -116,6 +117,7 @@
 				"scripts/features/font-size/ttFontSize.entry.js",
 				"scripts/features/block-zalgo/ttBlockZalgo.entry.js",
 				"scripts/features/hide-chat/ttHideChat.entry.js",
+				"scripts/features/custom-theming/ttCustomTheming.entry.js",
 				"scripts/features/ff-scouter/ff-scouter.js"
 			],
 			"run_at": "document_start"
